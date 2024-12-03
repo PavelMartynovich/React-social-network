@@ -1,0 +1,30 @@
+.Dialogs{
+    display: grid;
+    grid-template-areas:
+    "d m";
+    grid-template-columns: 20% 80%;
+    grid-template-rows: 700px;
+}
+.DialogsItems #isactive{
+    color: rgb(8, 108, 190);
+   
+}
+.DialogsItems {
+    
+    color: aliceblue;
+    padding: 15px;
+    background-color: rgb(195, 217, 217);
+}
+
+.Messages {
+    
+    padding: 20px;
+    background-color: rgb(18, 129, 133); /* Светлый фон */
+    overflow-y: auto;  /* Прокрутка по вертикали, если сообщений много */  
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Тень для выделения */
+}
+
+.active {
+    color: red;  /* Измените на нужный цвет */
+  }
+

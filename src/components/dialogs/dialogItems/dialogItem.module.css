@@ -1,0 +1,2 @@
+.img img{ height: 40px; width: 40px; padding-top: 10px; padding-right: 10px;}
+.Dialog{display: flex; flex-direction: row;  align-items: flex-start;}

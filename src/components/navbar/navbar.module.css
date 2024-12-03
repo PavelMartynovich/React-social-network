@@ -1,0 +1,4 @@
+.Nav{ background-color: rgb(0, 94, 255); grid-area: n}
+.item {color: aliceblue;}
+.item.active{color: gold;}
+.active {color: gold;}
