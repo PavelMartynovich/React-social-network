@@ -7,20 +7,34 @@ import DialogItem from "./dialogItems/dialogItem";
 import { addMessageActionCreator } from "../../data/dialogs-reducer";
 import { updateMessageValueActionCreator } from "../../data/dialogs-reducer";
 import Dialogs from "./dialogs";
+import { store } from "../../data/redux-store";
+import MyContext from "../../contenContext";
 
 function DialogsContainer(props) {
-     let state=props.store.getState();
+
+    //let state = props.store.getState();
 
      
-     let sendMessage = () => {
+     
+     return (
+          <MyContext.Consumer>
+               {
 
-          props.store.dispatch(addMessageActionCreator())
+                    (store) => {
+                         let state = store.getState();
+                         let sendMessage = () => {
 
-     }
-     let updateMessageValue = (message) => {
-          
-          props.store.dispatch(updateMessageValueActionCreator(message))
-     }
-     return <Dialogs sendMessage={sendMessage} updateMessageValue={updateMessageValue} newMessageText={state.dialogsPage.newMessageText} DialogData={state.dialogsPage.DialogData} MessageData={state.dialogsPage.MessageData}/>
+                              store.dispatch(addMessageActionCreator())
+
+                         }
+                         let updateMessageValue = (message) => {
+
+                              store.dispatch(updateMessageValueActionCreator(message))
+                         }
+                         return <Dialogs sendMessage={sendMessage} updateMessageValue={updateMessageValue} newMessageText={state.dialogsPage.newMessageText} DialogData={state.dialogsPage.DialogData} MessageData={state.dialogsPage.MessageData} />
+                    }
+               }
+          </MyContext.Consumer>
+     )
 }
 export default DialogsContainer;

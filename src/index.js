@@ -4,8 +4,9 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import { store } from './data/redux-store';
-
+import MyContext from './contenContext';
 import reportWebVitals from './reportWebVitals';
+import { Provider } from './contenContext';
 
 // Получаем текущее состояние
 const state = store.getState();
@@ -16,15 +17,20 @@ console.log(state.dialogsPage); // выведет состояние из ред
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
 let RenderApp=()=>
 {
 
-root.render(                                                          
+  root.render(
 
-  <React.StrictMode>    
-    <App store={store} />
-  </React.StrictMode>
-);
+    <React.StrictMode>
+      <Provider store={store}>
+        <App />
+      </Provider>
+    </React.StrictMode>
+
+  );
+  
 }
 RenderApp(store.getState());
 store.subscribe(RenderApp)

@@ -12,6 +12,7 @@ import Setting from './components/setting/setting';
 import { Route, BrowserRouter } from "react-router-dom";
 import { Routes } from 'react-router-dom';
 
+
 function App(props) {
   return (
     <BrowserRouter>
@@ -21,7 +22,7 @@ function App(props) {
         <Nav />
         <div className='app-wrapper-content'>
           <Routes>
-            <Route path="/profile" element={<Profile store={props.store} /> } />
+            <Route path="/profile" element={<Profile  /> } />
             <Route path="/dialogs/*" element={<DialogsContainer store={props.store}/>} />
             <Route path="/news" element={<News />} />
             <Route path="/music" element={<Music />} />
