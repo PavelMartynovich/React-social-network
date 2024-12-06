@@ -8,7 +8,7 @@ import { addMessageActionCreator } from "../../data/dialogs-reducer";
 import { updateMessageValueActionCreator } from "../../data/dialogs-reducer";
 
 function Dialogs(props) {
-   debugger;
+  
      let MessageArr = props.MessageData.map(el => <Message message={el.message} />)
      let DialogArr = props.DialogData.map(el => <DialogItem name={el.name} id={el.id} src={el.src} />)
      let valueLink = React.createRef()

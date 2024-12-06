@@ -7,14 +7,15 @@ import Post1 from './Post/Post';
 
 function MyPosts(props) {
 
+    console.log(props)
     let PostArr = props.Posts.map(el => <Post1 message={el.message} LikeCount={el.LikeCount} />)
 
     let newPostElemnt = React.createRef();
 
     let addPost = () => {
-        props.addPost()
-       
+        props.addPost()     
     }
+    
     let onPostChange = () => {
         props.onPostChange(newPostElemnt.current.value)
     }
