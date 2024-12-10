@@ -29,8 +29,8 @@ function Dialogs(props) {
           <div className={s.Dialogs}>
                <div className={s.DialogsItems}>
                    {DialogArr}
+                   
                </div>
-
                <div className={s.Messages}>
                     {MessageArr}
                     <textarea ref={valueLink} value={props.newMessageText} onChange={updateMessageValue} name="" id=""></textarea>
@@ -38,6 +38,6 @@ function Dialogs(props) {
                </div>
           </div>
      );
-
+     
 }
 export default Dialogs;

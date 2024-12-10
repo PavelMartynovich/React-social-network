@@ -17,8 +17,6 @@ console.log(state.dialogsPage); // выведет состояние из ред
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
-let RenderApp=()=>
-{
 
   root.render(
 
@@ -29,10 +27,7 @@ let RenderApp=()=>
     </React.StrictMode>
 
   );
-  
-}
-RenderApp(store.getState());
-store.subscribe(RenderApp)
+
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

@@ -10,24 +10,25 @@ let intialState =  {
 }
 
 export const profileReducer = (state=intialState, action) => {
-    let stateCopy = { ...state };
-
-    switch (action.type) {
+    
+let stateCopy={...state}
+    switch (action.type) {       
         case "ADD-POST":
-        
-          
-
-          // Создаем новый массив с добавленным постом
-          stateCopy.PostData = [...state.PostData, { id: 3, message: state.newPostText, LikeCount: '0' }];
-          
-          // Очищаем текст нового поста
-          stateCopy.newPostText = ''; 
-         
-          return stateCopy;
-
-        case "UPDATE-POST-VALUE":
-            stateCopy.newPostText = action.text
+            stateCopy.PostData=[...state.PostData,{ id: 3, message:state.newPostText, LikeCount: '0' }]
+            stateCopy.newPostText=''
             return stateCopy;
+         /*    return{
+                ...state,
+                PostData:[...state.PostData,{ id: 3, message:state.newPostText, LikeCount: '0' }],
+                ...state.newPostText='',
+                }; */
+        case "UPDATE-POST-VALUE":
+            stateCopy.newPostText=action.text 
+            return stateCopy
+       /*     return{
+            ...state,
+            newPostText:action.text 
+        }; */
         default:
             return state;
     }

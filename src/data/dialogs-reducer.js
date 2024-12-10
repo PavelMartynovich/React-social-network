@@ -15,18 +15,20 @@ let intialState = {
     newMessageText: ''
 }
 export const dialogsReducer = (state = intialState, action) => {
-    let stateCopy = { ...state }
+let stateCopy={...state}
     switch (action.type) {
+        case "UPDATE-MESSAGE-VALUE":
+            stateCopy.newMessageText=action.text
+            return stateCopy
+            
         case "ADD-MESSAGE":
-            stateCopy.MessageData = [...state.MessageData, { id: 5, message: state.newMessageText }]
-            stateCopy.newMessageText = ''
+           
+            stateCopy.MessageData=[...state.MessageData,{id: 4, message:state.newMessageText}]
+            stateCopy.newMessageText=''
             return stateCopy
 
-        case "UPDATE-MESSAGE-VALUE":
-            stateCopy.newMessageText = action.text
-            return stateCopy;
-        default:
-            return state;
+default:
+return state;
     }
 
 
