@@ -53,6 +53,15 @@ function Nav() {
           Setting
         </NavLink>
       </div>
+      
+      <div className={s.item}>
+        <NavLink 
+          to='/users' 
+          className={({ isActive }) => isActive ? s.active : s.item}  // Используем isActive
+        >
+          Users
+        </NavLink>
+      </div>
     </nav>
     );
   }
