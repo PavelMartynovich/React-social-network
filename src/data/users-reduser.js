@@ -3,12 +3,7 @@ import Users from "../components/users/users";
 
 
 let initialState = {
-    Users: [
-        { id: 1, followed: true, firstName: "Pavel", lastName: "Martynovich", country: "Belarus" },
-        { id: 2, followed: true, firstName: "Pavel", lastName: "Martynovich", country: "London" },
-        { id: 3, followed: false, firstName: "Pavel", lastName: "Martynovich", country: "Berlin" },
-        { id: 4, followed: true, firstName: "Pavel", lastName: "Martynovich", country: "California" },
-    ]
+    Users: []
 };
 
 
@@ -26,6 +21,9 @@ export let usersReducer = (state = initialState, action) => {
                 el.id == action.userId ? { ...el, followed: false } : el
             );
             return { ...state, Users: updateUnfollow }
+        case "setUsersAC":
+            return { ...state, Users: action.Users };
+
         default:
             return state;
     }
@@ -35,3 +33,5 @@ export let usersReducer = (state = initialState, action) => {
 export const followAC = (userId) => ({ type: 'followAC', userId });
 
 export const unfollowAC = (userId) => ({ type: 'unfollowAC', userId });
+
+export const setUsersAC=(Users)=>( {type: 'setUsersAC', Users:Users })
