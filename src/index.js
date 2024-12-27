@@ -11,8 +11,7 @@ import { Provider } from 'react-redux';
 const state = store.getState();
 
 // Теперь можно получить profilePage и dialogsPage
-console.log(state.profilePage); // выведет состояние из редьюсера dialogs-reducer
-console.log(state.dialogsPage); // выведет состояние из редьюсера profile-reducer
+
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
