@@ -1,53 +1,40 @@
 import React from 'react';
 import s from './users.module.css';
-import axios from 'axios';
 import userPhoto from '../../assets/images/149071.png';
 
-class Users extends React.Component {
-    componentDidMount() {
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`).then(response => {
-            this.props.setUsers(response.data.items);
-            this.props.setTotalCount(response.data.totalCount);
-        });
+let Users=(props)=> {
+    let pagesCount = Math.ceil(props.totalCount / props.pageSize); // Исправлен расчет страниц
+    let pages = [];
+    let delta=3;
+    if (props.currentPage-delta>1) {
+       pages.push(1)
+      
+       for (let i = props.currentPage-delta; i <=props.currentPage; i++) {
+        pages.push(i)           
+       }
     }
-    onPageChanged = (page)=>{
-        this.props.setCurrentPage(page)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`).then(response => {
-            this.props.setUsers(response.data.items);
-        })
+    else
+    {
+        for (let i = 1; i<=props.currentPage; i++) {
+        pages.push(i) 
+        
     }
-    render() {
-        let pagesCount = Math.ceil(this.props.totalCount / this.props.pageSize); // Исправлен расчет страниц
-        let pages = [];
-        let delta=3;
-        if (this.props.currentPage-delta>1) {
-           pages.push(1)
-           
-           for (let i = this.props.currentPage-delta; i <=this.props.currentPage; i++) {
-            pages.push(i)           
-           }
-        }
-        else
-        {
-            for (let i = 1; i<=this.props.currentPage; i++) {
-            pages.push(i) 
-            
-        }
-        }
-        if (this.props.currentPage+delta<pagesCount) {
-           
-           for (let i = this.props.currentPage+1; i <=this.props.currentPage+delta; i++) {
-            pages.push(i)           
-           }
-           pages.push(pagesCount)
-        }
-        else
-        {
-            for (let i = this.props.currentPage+1; i<=pagesCount; i++) {
-            pages.push(i) 
-            
-        }
-        }
+    }
+    if (props.currentPage+delta<pagesCount) {
+       
+       for (let i = props.currentPage+1; i <=props.currentPage+delta; i++) {
+        pages.push(i)           
+       }
+       pages.push(pagesCount)
+    }
+    else
+    {
+        for (let i = props.currentPage+1; i<=pagesCount; i++) {
+        pages.push(i) 
+        
+    }
+    }
+    
 
         return (
             <div>
@@ -55,12 +42,12 @@ class Users extends React.Component {
                   {/*   <span  onClick={()=>{this.onPageChanged(1)}} >{pages[0]}...</span> */}
                     {pages.map(el => { // Вывод страниц
                       
-                       return <span key={el} className={el === this.props.currentPage ? s.selectedPage : ''} onClick={()=>{this.onPageChanged(el)}}>
-                            { el!=this.props.currentPage&&el==pagesCount?'...':''}{el}{' '}{ el!=this.props.currentPage&&el==1?'...':''}
+                       return <span key={el} className={el === props.currentPage ? s.selectedPage : ''} onClick={()=>{props.onPageChanged(el)}}>
+                            { el!=props.currentPage&&el==pagesCount?'...':''}{el}{' '}{ el!=props.currentPage&&el==1?'...':''}
                         </span>
                       })}
                 </div>
-                {this.props.Users.map(el => (
+                {props.Users.map(el => (
                     <div className={s.UsersBlock} key={el.id}>
                         <div className={s.ava}>
                             <img src={el.photos.small == null ? userPhoto : el.photos.small} alt="avatar" />
@@ -70,9 +57,9 @@ class Users extends React.Component {
                         </div>
                         <div className={s.follow}>
                             {el.followed ? (
-                                <button onClick={() => this.props.unfollow(el.id)}>YOU FOLLOWED</button>
+                                <button onClick={() => props.unfollow(el.id)}>YOU FOLLOWED</button>
                             ) : (
-                                <button onClick={() => this.props.follow(el.id)}>FOLLOW</button>
+                                <button onClick={() => props.follow(el.id)}>FOLLOW</button>
                             )}
                         </div>
                     </div>
@@ -80,6 +67,6 @@ class Users extends React.Component {
             </div>
         );
     }
-}
+
 
 export default Users;
