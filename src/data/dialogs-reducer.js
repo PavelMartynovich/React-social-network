@@ -26,7 +26,7 @@ let stateCopy={...state}
             stateCopy.MessageData=[...state.MessageData,{id: 4, message:state.newMessageText}]
             stateCopy.newMessageText=''
             return stateCopy
-
+       
 default:
 return state;
     }

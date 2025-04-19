@@ -1,3 +1,4 @@
+import { current } from "@reduxjs/toolkit"
 
 
 let intialState =  {
@@ -6,7 +7,10 @@ let intialState =  {
         { id: 2, message: "It's my first post", LikeCount: '12' },
 
     ],
-    newPostText: 'IT-kamasutra'
+    newPostText: 'IT-kamasutra',
+
+    profileInformation:null,
+    
 }
 
 export const profileReducer = (state=intialState, action) => {
@@ -29,9 +33,14 @@ let stateCopy={...state}
             ...state,
             newPostText:action.text 
         }; */
+        case "SET-USERS-PROFILE":
+            stateCopy.profileInformation =action.profile
+            return stateCopy
+      
         default:
             return state;
     }
 }
 export const addPostActionCreator = () => ({ type: "ADD-POST" })
 export const updatePostValueActionCreator = (text) => ({ type: "UPDATE-POST-VALUE", text: text})
+export const setUserProfileActionCreator=(profile)=>({type:'SET-USERS-PROFILE', profile: profile})

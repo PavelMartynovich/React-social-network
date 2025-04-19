@@ -10,7 +10,7 @@ function Profile(props) {
 
         <div className={s.Profile}>
 
-          <ProfileInfo />
+           <ProfileInfo profileInformation={props.profileInformation}/>
           <MyPostsContainer />
             
            

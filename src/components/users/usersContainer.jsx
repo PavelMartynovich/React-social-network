@@ -7,7 +7,8 @@ import { setUsersAC } from "../../data/users-reduser";
 import { setCurrentPageAC } from "../../data/users-reduser";
 import { totalCountAC } from "../../data/users-reduser";
 import { toggelIsFetchingAC } from "../../data/users-reduser";
-import loader from '../../assets/images/b4d657e7ef262b88eb5f7ac021edda87_w200.webp'
+
+import loader from '../../assets/images/b4d657e7ef262b88eb5f7ac021edda87_w200.gif'
 import Users from "./users";
 import s from './users.module.css';
     
@@ -37,7 +38,8 @@ class UsersContainer extends React.Component{
                             currentPage={this.props.currentPage} 
                             follow={this.props.follow} 
                             unfollow={this.props.unfollow} 
-                            onPageChanged={this.onPageChanged}/>
+                            onPageChanged={this.onPageChanged}
+                            />
                             </>}
 }
 let mapStateToProps = (state) => {
@@ -49,7 +51,7 @@ let mapStateToProps = (state) => {
         isLoading:state.usersReducer.isLoading
     }; 
 }
-let mapDispatchToProps = (dispatch) => {
+/* let mapDispatchToProps = (dispatch) => {
     return {
         follow: (UserId) => {
             dispatch(followAC(UserId))
@@ -70,6 +72,15 @@ let mapDispatchToProps = (dispatch) => {
             dispatch(toggelIsFetchingAC(bull))
         }
     };
-}
-export default connect(mapStateToProps, mapDispatchToProps)(UsersContainer)
+} */
+export default connect(mapStateToProps, {
+    follow:followAC,
+    unfollow:unfollowAC,
+    setUsers:setUsersAC,
+   
+    setTotalCount:totalCountAC,
+    setCurrentPage:setCurrentPageAC,
+    toggelIsFetching:toggelIsFetchingAC
+    
+})(UsersContainer)
 
