@@ -7,16 +7,18 @@ import { type } from "@testing-library/user-event/dist/type";
 let initialState = {
   userId:null,
   email:null,
-  login:null
+  login:null,
+  isAuth:false
 };
 
 
-export let usersReducer = (state = initialState, action) => {
+export let authReducer = (state = initialState, action) => {
     switch (action.type) {
-        case "SET_USER_DATA":
-           
-            return 
-
+        case "SET_USER_DATA":            
+            return {...state,
+                 ...action.data, 
+                 isAuth:true
+            }
 
         default:
             return state;
@@ -24,5 +26,5 @@ export let usersReducer = (state = initialState, action) => {
 }
 
 
-export const followAC = (userId,email,login) => ({ type: 'SET_USER_DATA', action:{userId, email,login}});
+export const setAuthUserData = (userId,email,login) => ({ type: 'SET_USER_DATA', data:{userId, email,login}});
 
