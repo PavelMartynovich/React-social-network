@@ -9,7 +9,8 @@ let initialState = {
     pageSize: 30,
     totalCount:1,
     currentPage:1,
-    isLoading:false
+    isLoading:false,
+    followingInProgress:[]
 };
 
 
@@ -35,6 +36,8 @@ export let usersReducer = (state = initialState, action) => {
             return {...state, currentPage:action.page};
         case "toggelIsFetchingAC":
             return {...state, isLoading:action.bull};
+        case 'toggleFollowingInProgressAC':
+            return{...state, followingInProgress:action.bull }
 
         default:
             return state;
@@ -53,3 +56,5 @@ export const totalCountAC=(count)=>( {type: 'totalCountAC', count:count })
 export const setCurrentPageAC=(page)=>({type: 'setCurrentPageAC', page:page})
 
 export const toggelIsFetchingAC=(bull)=>({type: 'toggelIsFetchingAC', bull:bull})
+
+export const toggleFollowingInProgressAC=(bull)=>({type:'toggleFollowingInProgressAC', bull:bull})

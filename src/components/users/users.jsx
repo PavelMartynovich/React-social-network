@@ -3,6 +3,9 @@ import s from './users.module.css';
 import userPhoto from '../../assets/images/149071.png';
 import { NavLink } from 'react-router-dom';
 
+import { usersAPI } from '../../API/Api';
+
+
 
 let Users = (props) => {
     let pagesCount = Math.ceil(props.totalCount / props.pageSize); // Исправлен расчет страниц
@@ -57,13 +60,55 @@ let Users = (props) => {
                     <div className={s.shortInfo}>
                         Minsk <br /> {el.name}
                     </div>
+
+
+
                     <div className={s.follow}>
-                        {el.followed ? (
-                            <button onClick={() => props.unfollow(el.id)}>YOU FOLLOWED</button>
-                        ) : (
-                            <button onClick={() => props.follow(el.id)}>FOLLOW</button>
-                        )}
+                        {
+
+
+                            el.followed ? (
+                                <button disabled={props.followingInProgress.some( id => id===el.id)} onClick={
+                                    () => {
+                                        usersAPI.startRequesdt()
+                                        usersAPI.deleteUsers(el.id)
+
+                                            .then(response => {
+                                                
+                                                if (response.data.resultCode === 0) {
+                                                    props.unfollow(el.id)
+                                                }
+                                                usersAPI.stopRequesdt()
+                                            })
+                                    }
+
+
+                                }> YOU FOLLOWED </button>
+                            )
+                            : (
+                                <button disabled={props.followingInProgress} onClick={
+                                    () => {
+                                        usersAPI.startRequesdt()
+                                        usersAPI.postUsers(el.id)
+                                        
+                                            .then(response => {
+
+                                                if (response.data.resultCode === 0) {
+                                                    props.follow(el.id)
+                                                }
+                                                usersAPI.stopRequesdt()
+                                            })
+                                    }
+
+                                }>FOLLOW</button>
+
+                                    
+                            )
+
+                        }
+
                     </div>
+
                 </div>
             ))}
         </div>
