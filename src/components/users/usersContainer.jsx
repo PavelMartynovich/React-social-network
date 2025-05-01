@@ -1,21 +1,22 @@
 import React from "react";
 import { connect } from "react-redux";
-import axios from 'axios';
-import { followAC, usersReducer } from "../../data/users-reduser";
-import { unfollowAC } from "../../data/users-reduser";
-import { setUsersAC } from "../../data/users-reduser";
-import { setCurrentPageAC } from "../../data/users-reduser";
-import { totalCountAC } from "../../data/users-reduser";
-import { toggelIsFetchingAC } from "../../data/users-reduser";
 
-import { usersAPI } from "../../API/Api";
-import loader from '../../assets/images/b4d657e7ef262b88eb5f7ac021edda87_w200.gif'
+import { setCurrentPageAC } from "../../data/users-reduser";
+
+import { getUsersThunkCreator } from "../../data/users-reduser";
+import { followThunkCreator } from "../../data/users-reduser";
+import { unfollowThunkCreator } from "../../data/users-reduser";
+
 import Users from "./users";
+
+import loader from '../../assets/images/b4d657e7ef262b88eb5f7ac021edda87_w200.gif'
+
 import s from './users.module.css';
     
 class UsersContainer extends React.Component{
     componentDidMount() {
-        this.props.toggelIsFetching(true)
+        this.props.getUsers(this.props.currentPage, this.props.pageSize)
+         /*   this.props.toggelIsFetching(true)
         usersAPI.getUsers(this.props.currentPage, this.props.pageSize)
         .then(response => {
             
@@ -23,16 +24,18 @@ class UsersContainer extends React.Component{
             this.props.setUsers(response.items);
             this.props.setTotalCount(response.totalCount);
           
-        });
+        }); */
     }
     onPageChanged = (page)=>{ 
-        this.props.toggelIsFetching(true)
         this.props.setCurrentPage(page)
+        this.props.getUsers(page, this.props.pageSize)
+       /*  this.props.toggelIsFetching(true)
+        
         usersAPI.getUsers(this.props.currentPage, this.props.pageSize)
         .then(response => {
             this.props.setUsers(response.items);
             this.props.toggelIsFetching(false)
-        })
+        }) */
     }
 
     render(){return<>     {this.props.isLoading? <img className={s.loader} src={loader}/>:null}
@@ -54,7 +57,8 @@ let mapStateToProps = (state) => {
         pageSize:state.usersReducer.pageSize,
         currentPage:state.usersReducer.currentPage,
         isLoading:state.usersReducer.isLoading,
-        followingInProgress:state.usersReducer.followingInProgress
+        followingInProgress:state.usersReducer.followingInProgress,
+        
     }; 
 }
 /* let mapDispatchToProps = (dispatch) => {
@@ -80,13 +84,11 @@ let mapStateToProps = (state) => {
     };
 } */
 export default connect(mapStateToProps, {
-    follow:followAC,
-    unfollow:unfollowAC,
-    setUsers:setUsersAC,
-   
-    setTotalCount:totalCountAC,
     setCurrentPage:setCurrentPageAC,
-    toggelIsFetching:toggelIsFetchingAC,
+
+    follow:followThunkCreator,
+    unfollow:unfollowThunkCreator,
+    getUsers:getUsersThunkCreator
 
     
 })(UsersContainer)

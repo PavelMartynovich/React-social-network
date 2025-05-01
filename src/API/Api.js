@@ -21,17 +21,9 @@ export const usersAPI = {
                 return response.data
             })
     },
-    startRequesdt(){
- 
-    },
-    stopRequesdt(){
-       
-    },
-
     postUsers(userId) {
         
         return instance.post(`follow/${userId}`)
-        
        
     },
     deleteUsers(userId) {
