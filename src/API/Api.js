@@ -30,6 +30,10 @@ export const usersAPI = {
       
         return instance.delete(`follow/${userId}`)
        
+    },
+    getProfile(userId){
+        
+        return instance.get(`profile/${userId}`)
     }
 }
 

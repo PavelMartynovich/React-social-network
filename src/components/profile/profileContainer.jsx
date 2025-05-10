@@ -1,10 +1,14 @@
 import React from 'react';
-import { setUserProfileActionCreator } from '../../data/profile-reducer.js';
+
 import Profile from './profile.jsx';
+
 import { connect } from 'react-redux';
-import axios from 'axios';
 
 import {useParams} from "react-router-dom";
+
+import { setUsersThunkCreator } from '../../data/profile-reducer.js';
+
+
 
 export function withRouter(Children){
     return(props)=>{
@@ -12,30 +16,28 @@ export function withRouter(Children){
         return <Children {...props}  match={match}/>
     }
 }
+
+
 class ProfileContainer extends React.Component{
 componentDidMount(){
-let userId =this.props.match.params.userId
-    axios.get(`https://social-network.samuraijs.com/api/1.0/profile/`+userId).then((response)=>{
-      console.log(response.data)
-      this.props.setUserProfile(response.data)
-      
-    })
+
+let userId = this.props.match.params.userId
+
+    if (!userId) {
+      userId=2;
+    }
+    
+    this.props.setUsers(userId)
 }
 render(){
-  
-  return <Profile profileInformation={this.props.profileInformation} />
-  
-}
-}
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    
-      setUserProfile: (profile) => {
-          dispatch(setUserProfileActionCreator(profile))
-      }
+  if (this.props.profileInformation==null) {
+    return <div>Загрузка профиля...</div>;
+  }
+  return <Profile {...this.props} profileInformation={this.props.profileInformation}/> 
   }
 }
+
+
 const mapStateToProps = (state) => {
   return {
       Posts: state.profilePage.PostData,
@@ -49,4 +51,4 @@ const mapStateToProps = (state) => {
 const WhitsUrlContainerComponent = withRouter(ProfileContainer)
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(WhitsUrlContainerComponent);
+export default connect(mapStateToProps, {setUsers:setUsersThunkCreator})(WhitsUrlContainerComponent);

@@ -13,6 +13,19 @@ import loader from '../../assets/images/b4d657e7ef262b88eb5f7ac021edda87_w200.gi
 
 import s from './users.module.css';
     
+
+
+
+
+
+
+
+
+
+
+
+
+
 class UsersContainer extends React.Component{
     componentDidMount() {
         this.props.getUsers(this.props.currentPage, this.props.pageSize)

@@ -1,4 +1,5 @@
 import { current } from "@reduxjs/toolkit"
+import { usersAPI } from "../API/Api"
 
 
 let intialState =  {
@@ -34,7 +35,7 @@ let stateCopy={...state}
             newPostText:action.text 
         }; */
         case "SET-USERS-PROFILE":
-            stateCopy.profileInformation =action.profile
+            stateCopy.profileInformation = action.profile
             return stateCopy
       
         default:
@@ -44,3 +45,16 @@ let stateCopy={...state}
 export const addPostActionCreator = () => ({ type: "ADD-POST" })
 export const updatePostValueActionCreator = (text) => ({ type: "UPDATE-POST-VALUE", text: text})
 export const setUserProfileActionCreator=(profile)=>({type:'SET-USERS-PROFILE', profile: profile})
+
+export const setUsersThunkCreator=(userId)=>{
+
+    return (dispatch)=>{
+            usersAPI.getProfile(userId)
+             .then((response)=>{
+     debugger;
+      dispatch(setUserProfileActionCreator(response.data))
+      
+    })
+        
+    }
+}
