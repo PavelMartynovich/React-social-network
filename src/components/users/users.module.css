@@ -11,7 +11,7 @@
   
   .ava {
     grid-area:q;
-    background-color: blueviolet;
+    background-color: rgb(129, 55, 193);
      /* Каждый блок будет заполнять всю высоту родительского */
   }
   

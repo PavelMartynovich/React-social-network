@@ -7,6 +7,7 @@ import Post1 from './Post/Post';
 
 function MyPosts(props) {
 
+    
 
     let PostArr = props.Posts.map(el => <Post1 message={el.message} LikeCount={el.LikeCount} />)
 

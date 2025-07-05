@@ -10,6 +10,7 @@ import Setting from './components/setting/setting';
 import UsersContainer from './components/users/usersContainer';
 import { Route, BrowserRouter } from "react-router-dom";
 import { Routes } from 'react-router-dom';
+import Login from './components/Login/login';
 
 
 function App(props) {
@@ -24,11 +25,13 @@ function App(props) {
 
        
             <Route path="/profile/:userId" element={<ProfileContainer />} />
+            <Route path="/profile" element={<ProfileContainer />} />
             <Route path="/dialogs/*" element={<DialogsContainer />} />
             <Route path="/news" element={<News />} />
             <Route path="/music" element={<Music />} />
             <Route path="/users" element={<UsersContainer />} />
             <Route path="/setting" element={<Setting />} />
+            <Route path="/login" element={<Login />} />
 
           </Routes>
         </div>

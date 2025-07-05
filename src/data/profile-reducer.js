@@ -1,5 +1,6 @@
 import { current } from "@reduxjs/toolkit"
 import { usersAPI } from "../API/Api"
+import { profileAPI } from "../API/Api"
 
 
 let intialState =  {
@@ -11,6 +12,7 @@ let intialState =  {
     newPostText: 'IT-kamasutra',
 
     profileInformation:null,
+    status:'',
     
 }
 
@@ -37,6 +39,9 @@ let stateCopy={...state}
         case "SET-USERS-PROFILE":
             stateCopy.profileInformation = action.profile
             return stateCopy
+        case "SET-STATUS":
+            stateCopy.status = action.status
+            return stateCopy
       
         default:
             return state;
@@ -45,15 +50,38 @@ let stateCopy={...state}
 export const addPostActionCreator = () => ({ type: "ADD-POST" })
 export const updatePostValueActionCreator = (text) => ({ type: "UPDATE-POST-VALUE", text: text})
 export const setUserProfileActionCreator=(profile)=>({type:'SET-USERS-PROFILE', profile: profile})
+export const setStatusActionCreator=(status)=>({type:'SET-STATUS', status: status})
 
 export const setUsersThunkCreator=(userId)=>{
 
     return (dispatch)=>{
-            usersAPI.getProfile(userId)
+            profileAPI.getProfile(userId)
              .then((response)=>{
-     debugger;
       dispatch(setUserProfileActionCreator(response.data))
       
+    })
+        
+    }
+}
+export const getStatusThunkCreator=(userId)=>{
+
+    return (dispatch)=>{
+            profileAPI.getStatus(userId)
+             .then((response)=>{
+      dispatch(setStatusActionCreator(response.data))
+      
+    })
+        
+    }
+}
+export const updateStatusThunkCreator=(status)=>{
+
+    return (dispatch)=>{
+            profileAPI.updateStatus(status)
+             .then((response)=>{
+                if(response.data.resultCode===0){
+                     dispatch(setStatusActionCreator(status))
+                }      
     })
         
     }

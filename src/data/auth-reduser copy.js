@@ -2,6 +2,7 @@ import React from "react";
 import Users from "../components/users/users";
 import { current } from "@reduxjs/toolkit";
 import { type } from "@testing-library/user-event/dist/type";
+import { authAPI } from "../API/Api";
 
 
 let initialState = {
@@ -27,5 +28,18 @@ export let authReducer = (state = initialState, action) => {
 
 
 export const setAuthUserData = (userId,email,login) => ({ type: 'SET_USER_DATA', data:{userId, email,login}});
+export const getAuthUserDataThunkCreator = () => {
+    return (dispatch)=>{
+        authAPI.me()
+        .then(response => {
+        
+                if(response.data.resultCode===0){
+                    let {id,login,email}=response.data.data; 
+                    dispatch(setAuthUserData(id,email,login))
+                }
+              
+            });
+    }
+};
 
 

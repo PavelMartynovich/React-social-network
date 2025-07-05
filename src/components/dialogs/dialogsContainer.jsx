@@ -1,6 +1,6 @@
 
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import s from './dialogs.module.css';
 import Message from "./messages/message";
 import DialogItem from "./dialogItems/dialogItem";
@@ -9,6 +9,8 @@ import { updateMessageValueActionCreator } from "../../data/dialogs-reducer";
 import Dialogs from "./dialogs";
 import { store } from "../../data/redux-store";
 import { connect } from "react-redux";
+import { withAuthRedirect } from "../../hoc/withAuthRedirect";
+import { compose } from "redux";
 
 
 /* function DialogsContainer(props) {
@@ -42,7 +44,8 @@ const mapStateToProps = (state) => {
      return {
           newMessageText: state.dialogsPage.newMessageText,
           DialogData: state.dialogsPage.DialogData,
-          MessageData: state.dialogsPage.MessageData
+          MessageData: state.dialogsPage.MessageData,
+          
      }
 }
 const mapDispatchToProps = (dispatch) => {
@@ -59,6 +62,10 @@ const mapDispatchToProps = (dispatch) => {
      }
 }
 
-const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs);
+compose(connect(mapStateToProps, mapDispatchToProps),withAuthRedirect)(Dialogs)
 
-export default DialogsContainer;
+
+
+
+export default 
+compose(connect(mapStateToProps, mapDispatchToProps),withAuthRedirect)(Dialogs);
