@@ -7,12 +7,12 @@ import { connect } from 'react-redux';
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        addPost: () => {
-            dispatch(addPostActionCreator())
+        addPost: (data) => {
+            dispatch(addPostActionCreator(data))
         },
-        onPostChange: (text) => {
+/*         onPostChange: (text) => {
             dispatch(updatePostValueActionCreator(text))
-        }
+        } */
     }
 }
 const mapStateToProps = (state) => {

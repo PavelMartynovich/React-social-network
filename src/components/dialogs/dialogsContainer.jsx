@@ -50,15 +50,11 @@ const mapStateToProps = (state) => {
 }
 const mapDispatchToProps = (dispatch) => {
      return {
-          sendMessage: () => {
+          sendMessage: (message) => {
 
-               dispatch(addMessageActionCreator())
+               dispatch(addMessageActionCreator(message))
 
           },
-          updateMessageValue: (message) => {
-
-               dispatch(updateMessageValueActionCreator(message))
-          }
      }
 }
 

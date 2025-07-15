@@ -15,7 +15,10 @@ function Profile(props) {
 
         <div className={s.Profile}>
 
-           <ProfileInfo match={props.match} profileInformation={props.profileInformation} status={props.status} updateStatus={props.updateStatus}/>
+           <ProfileInfo match={props.match} 
+                        profileInformation={props.profileInformation} 
+                        status={props.status} 
+                        updateStatus={props.updateStatus}/>
           <MyPostsContainer />
             
            

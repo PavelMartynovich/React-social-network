@@ -10,22 +10,23 @@ let intialState = {
         { id: 1, message: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries" },
         { id: 2, message: "How are you ?" },
         { id: 3, message: "let`s go" },
-        { id: 4, message: "yo yo yo" }
-    ],
-    newMessageText: ''
+        { id: 4, message: "yo yo yo" },
+    ]
+
 }
 export const dialogsReducer = (state = intialState, action) => {
-let stateCopy={...state}
+
     switch (action.type) {
-        case "UPDATE-MESSAGE-VALUE":
-            stateCopy.newMessageText=action.text
-            return stateCopy
             
         case "ADD-MESSAGE":
-           
-            stateCopy.MessageData=[...state.MessageData,{id: 4, message:state.newMessageText}]
-            stateCopy.newMessageText=''
-            return stateCopy
+            
+        return {
+            ...state,
+            MessageData: [
+                ...state.MessageData,
+                { id: 5, message: action.newMessageText }
+            ]
+        };
        
 default:
 return state;
@@ -33,5 +34,4 @@ return state;
 
 
 }
-export const addMessageActionCreator = () => ({ type: 'ADD-MESSAGE' })
-export const updateMessageValueActionCreator = (text) => ({ type: 'UPDATE-MESSAGE-VALUE', text: text })
+export const addMessageActionCreator = (message) => ({ type: 'ADD-MESSAGE', newMessageText: message })
