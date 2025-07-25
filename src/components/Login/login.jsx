@@ -1,4 +1,11 @@
 import {useForm} from 'react-hook-form'
+import { ErrorMessage } from '@hookform/error-message'
+import s from './login.module.css'
+import { connect } from 'react-redux'
+import { login } from '../../data/auth-reduser copy'
+import { Navigate } from 'react-router-dom'
+
+
 
 const Login= (props) => {
 // useForm() возвращает объект значений!!! Поэтому тут мы и делаем деструктуризирующее присваивание 
@@ -10,8 +17,12 @@ const{register,
       = useForm() 
 // handleSubmit дает data в onSubmit
 
-const onSubmit = (data) => console.log(data)
+const onSubmit = (data) => { props.login(data.login, data.password, data.checkBox, true) }
 console.log(watch("password")) 
+
+if(props.isAuth){
+   return <Navigate to="/profile" replace />
+}
 
 return (
    /* handleSubmit это контейнерная функция 'react-hook-form' ей мы оборачиваем нашу onSubmit, она
@@ -19,14 +30,19 @@ return (
    объекта data
    */
    <form onSubmit={handleSubmit(onSubmit)}>
-   <div>
-     <input placeholder='логин' {...register("login", { required: 'введите логин' })} />
-     <div>{errors.login && errors.login.message }</div> 
+   <div >
+     <input className={errors.login ? s.inputError:s.input} placeholder='логин' {...register("login", { required: 'введите логин' })} />
+     <div>{errors.login ? errors.login.message:"\u00A0"}</div>  
    </div>
-     
+
+
    <div>
-     <input placeholder='пароль' {...register("password", { required: 'введите пароль' })} />
-     <div>{errors.password&&errors.password.message}</div>
+      <div>
+         <input className={errors.login ? s.inputError:s.input} placeholder='пароль' {...register("password", { required: 'введите пароль' })} />
+              <div>{errors.password?errors.password.message:"\u00A0"}</div>
+      </div>
+     
+
      {/* errors will return when field validation fails  */}
    </div>  
 
@@ -39,6 +55,11 @@ return (
  )
 
 }
+const mapStateToProps =(state)=> ({
+   isAuth: state.auth.isAuth
+})
+
+export default connect(mapStateToProps, {login}) (Login)
 
 
 
@@ -105,4 +126,3 @@ const Login = (props) => {
 }
 
 */
-export default Login

@@ -1,0 +1,12 @@
+/* Form.module.css */
+.input {
+  border: 1px solid antiquewhite;
+  padding: 8px;
+  width: 200px;
+}
+
+.inputError {
+  border: 1px solid brown;
+  padding: 8px;
+  width: 200px;
+}

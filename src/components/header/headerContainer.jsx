@@ -5,6 +5,8 @@ import axios from "axios";
 import { connect } from "react-redux";
 import { authAPI } from "../../API/Api";
 import { getAuthUserDataThunkCreator } from "../../data/auth-reduser copy";
+import { logout } from "../../data/auth-reduser copy";
+
 class HeaderContainer extends React.Component {
     componentDidMount() {
         this.props.getAuthUserDataThunkCreator()
@@ -20,4 +22,4 @@ const mapStateToProps=(state)=>({
     login:state.auth.login,
     
 })
-export default connect(mapStateToProps,{getAuthUserDataThunkCreator})(HeaderContainer);
+export default connect(mapStateToProps,{getAuthUserDataThunkCreator, logout})(HeaderContainer);
