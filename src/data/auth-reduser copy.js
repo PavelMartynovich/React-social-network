@@ -43,17 +43,31 @@ export const getAuthUserDataThunkCreator = () => {
     }
 };
 
-export const login =(email, password, rememberMe)=>{
-    return (dispatch)=>{
-        authAPI.login(email, password, rememberMe)
+export const login =(email, password, rememberMe)=>
+    async (dispatch)=>{
+        const response = await authAPI.login(email, password, rememberMe)
+
+        if(response.data.resultCode===0){
+            dispatch(getAuthUserDataThunkCreator())
+            return{success:true}
+        }
+        else{
+            
+            return{
+            success:false,
+            error:response.data.messages[0] || "Ошибка входа"
+            }
+        }
+
+  /*       authAPI.login(email, password, rememberMe)
         .then(response => {
                 if(response.data.resultCode===0){
                     dispatch(getAuthUserDataThunkCreator())
                 }
               
-            });
+            }); */
     }
-}
+
 export const logout =()=>{
 
     return (dispatch)=>{

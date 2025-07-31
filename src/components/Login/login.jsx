@@ -12,13 +12,21 @@ const Login= (props) => {
 const{register,
       handleSubmit, 
       formState:{errors},
+      setError,
       watch
    }
       = useForm() 
 // handleSubmit дает data в onSubmit
 
-const onSubmit = (data) => { props.login(data.login, data.password, data.checkBox, true) }
+const onSubmit = async (data) => { 
+   let result = await props.login(data.login, data.password, data.checkBox, true)
+   if (!result.success) {
+      setError("root",{type:"server", message:result.error} )
+   } 
+}
+
 console.log(watch("password")) 
+
 
 if(props.isAuth){
    return <Navigate to="/profile" replace />
@@ -39,7 +47,14 @@ return (
    <div>
       <div>
          <input className={errors.login ? s.inputError:s.input} placeholder='пароль' {...register("password", { required: 'введите пароль' })} />
-              <div>{errors.password?errors.password.message:"\u00A0"}</div>
+            {errors.password ? (
+               <div>{errors.password.message}</div>
+            ) : errors.root ? (
+               <div>{errors.root.message}</div>
+            ) : (
+               <div>{"\u00A0"}</div>
+            )}
+       
       </div>
      
 
