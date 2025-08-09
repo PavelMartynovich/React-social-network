@@ -9,6 +9,7 @@ import { useNavigate, useParams} from "react-router-dom";
 import { setUsersThunkCreator,updateStatusThunkCreator,getStatusThunkCreator} from '../../data/profile-reducer.js';
 import { withAuthRedirect } from '../../hoc/withAuthRedirect.js';
 import { compose } from 'redux';
+import { store } from '../../data/redux-store.js';
 
 
 
@@ -26,9 +27,9 @@ class ProfileContainer extends React.Component{
 componentDidMount(){
 
 let userId = this.props.match.params.userId
-console.log(this.props.match)
     if (!userId) {
-      userId=32354 }
+      userId= this.props.autorizedUserId
+    }
     
     this.props.setUsers(userId)
     this.props.getStatus(userId)
@@ -61,7 +62,8 @@ const mapStateToProps = (state) => {
       profileInformation: state.profilePage.profileInformation,
       currentProfile:state.profilePage.currentProfile,
       isAuth:state.auth.isAuth,
-      status: state.profilePage.status
+      status: state.profilePage.status,
+      autorizedUserId: state.auth.userId
 }
 }
 

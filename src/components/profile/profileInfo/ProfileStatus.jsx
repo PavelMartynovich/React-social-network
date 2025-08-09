@@ -1,4 +1,4 @@
-import React from 'react';
+/* import React from 'react';
 
 
 class ProfileStatus extends React.Component {
@@ -56,4 +56,4 @@ class ProfileStatus extends React.Component {
 
 }
 
-export default ProfileStatus;
+export default ProfileStatus; */

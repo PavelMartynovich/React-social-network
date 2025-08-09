@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './App.css';
 import HeaderContainer from './components/header/headerContainer';
 import Nav from './components/navbar/navbar';
-import ProfileContainer from './components/profile/profileContainer';
+import ProfileContainer, { withRouter } from './components/profile/profileContainer';
 import DialogsContainer from './components/dialogs/dialogsContainer';
 import Music from './components/music/music';
 import News from './components/news/news';
@@ -11,9 +11,22 @@ import UsersContainer from './components/users/usersContainer';
 import { Route, BrowserRouter } from "react-router-dom";
 import { Routes } from 'react-router-dom';
 import Login from './components/Login/login';
+import { getAuthUserDataThunkCreator } from './data/auth-reduser copy';
+import { connect } from 'react-redux';
+import { compose } from 'redux';
+import { initializeApp } from './data/app-reducer';
+import loader from './assets/images/b4d657e7ef262b88eb5f7ac021edda87_w200.gif'
 
+class App extends React.Component{
 
-function App(props) {
+  componentDidMount(){
+    this.props.initializeApp()
+  }
+
+render(){
+  if(!this.props.initialized){
+    return  <img  src={loader}/>
+  } 
   return (
     <BrowserRouter>
 
@@ -30,7 +43,7 @@ function App(props) {
             <Route path="/news" element={<News />} />
             <Route path="/music" element={<Music />} />
             <Route path="/users" element={<UsersContainer />} />
-            <Route path="/setting" element={<Setting />} />
+            <Route path="/setting" element={<Setting />} /> 
             <Route path="/login" element={<Login />} />
 
           </Routes>
@@ -41,7 +54,11 @@ function App(props) {
     </BrowserRouter>
   );
 }
+}
 
-
-export default App;
-
+const mapStateToProps=(state)=>({
+  initialized:state.app.initialized 
+})
+export default compose(
+                withRouter, 
+                connect(mapStateToProps,{initializeApp}))(App);

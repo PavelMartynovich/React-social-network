@@ -5,15 +5,15 @@ import { useForm } from 'react-hook-form';
 
 
 
-function MyPosts(props) {
-
+const MyPosts= React.memo(props=> {
+console.log('render yoo')
     const{register,
           handleSubmit,
           reset
          }
          =useForm()
     
-
+debugger;
     let PostArr = props.Posts.map(el => <Post1 message={el.message} LikeCount={el.LikeCount} />)
 
    /*  let newPostElemnt = React.createRef(); */
@@ -57,5 +57,5 @@ function MyPosts(props) {
 
     );
 }
-
+)
 export default MyPosts;

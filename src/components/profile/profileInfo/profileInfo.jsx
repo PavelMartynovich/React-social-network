@@ -1,5 +1,6 @@
 import React from 'react';
 import ProfileStatus from './ProfileStatus';
+import ProfileStatusWithHooks from './ProfileStatusWithHooks';
 import s from './ProfileInfo.module.css';
 
 function ProfileInfo(props) {
@@ -12,7 +13,7 @@ function ProfileInfo(props) {
   return (
 
     <div>
-      <ProfileStatus status={props.status} updateStatus={props.updateStatus}/>
+      <ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus}/>
       <h1>{props.profileInformation.fullName}</h1>
       <p>About Me: {props.profileInformation.aboutMe}</p>
       <p>Looking for a Job: {props.profileInformation.lookingForAJob ? "Yes" : "No"}</p>

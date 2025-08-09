@@ -7,6 +7,16 @@ import { getUsersThunkCreator } from "../../data/users-reduser";
 import { followThunkCreator } from "../../data/users-reduser";
 import { unfollowThunkCreator } from "../../data/users-reduser";
 
+
+import { getsUsers } from "../../data/users-selectors";
+import { getTotalCount } from "../../data/users-selectors";
+import { getCurrentPage } from "../../data/users-selectors";
+import { getIsLoading } from "../../data/users-selectors";
+import { getPageSize } from "../../data/users-selectors";
+import { getFollowingInProgress } from "../../data/users-selectors";
+
+
+
 import Users from "./users";
 
 import loader from '../../assets/images/b4d657e7ef262b88eb5f7ac021edda87_w200.gif'
@@ -65,12 +75,12 @@ class UsersContainer extends React.Component{
 }
 let mapStateToProps = (state) => {
     return{
-        Users:state.usersReducer.Users,
-        totalCount:state.usersReducer.totalCount,
-        pageSize:state.usersReducer.pageSize,
-        currentPage:state.usersReducer.currentPage,
-        isLoading:state.usersReducer.isLoading,
-        followingInProgress:state.usersReducer.followingInProgress,
+        Users: getsUsers(state),
+        totalCount: getTotalCount(state),
+        pageSize: getPageSize(state),
+        currentPage: getCurrentPage(state),
+        isLoading: getIsLoading(state),
+        followingInProgress: getFollowingInProgress(state),
         
     }; 
 }
