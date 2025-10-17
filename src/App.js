@@ -6,7 +6,7 @@ import ProfileContainer, { withRouter } from './components/profile/profileContai
 import DialogsContainer from './components/dialogs/dialogsContainer';
 import Music from './components/music/music';
 import News from './components/news/news';
-import Setting from './components/setting/setting';
+import { Setting } from './components/setting/setting';
 import UsersContainer from './components/users/usersContainer';
 import { Route, BrowserRouter } from "react-router-dom";
 import { Routes } from 'react-router-dom';
@@ -16,6 +16,12 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { initializeApp } from './data/app-reducer';
 import loader from './assets/images/b4d657e7ef262b88eb5f7ac021edda87_w200.gif'
+import { Provider } from 'react-redux';
+import { store } from './data/redux-store';
+import { useState } from 'react';
+
+
+
 
 class App extends React.Component{
 
@@ -23,10 +29,11 @@ class App extends React.Component{
     this.props.initializeApp()
   }
 
-render(){
+  render(){
   if(!this.props.initialized){
     return  <img  src={loader}/>
   } 
+  
   return (
     <BrowserRouter>
 
@@ -59,6 +66,19 @@ render(){
 const mapStateToProps=(state)=>({
   initialized:state.app.initialized 
 })
-export default compose(
+let AppContainer =  compose(
                 withRouter, 
                 connect(mapStateToProps,{initializeApp}))(App);
+
+
+export const SamuraiJSapp = (props) => {
+  const initialTheme = localStorage.getItem('data-theme') || 'light';
+  document.documentElement.setAttribute('data-theme', initialTheme)
+  return (
+    <React.StrictMode>
+      <Provider store={store}>
+        <AppContainer  />
+      </Provider>
+    </React.StrictMode>
+  )
+}

@@ -30,9 +30,9 @@ function Dialogs(props) {
                     }}
                 >
                     {() => (
-                        <Form>
-                            <Field as="textarea" name="newMessageText" />
-                            <button type="submit">ОТПРАВИТЬ</button>
+                        <Form className={s.form}>
+                            <Field className={s.input} as="textarea" name="newMessageText" placeholder="Сообщение..."/>
+                            <button className={s.button} type="submit">ОТПРАВИТЬ</button>
                         </Form>
                     )}
                 </Formik>

@@ -5,26 +5,44 @@
     grid-template-columns: 20% 80%;
     grid-template-rows: 700px;
 }
-.DialogsItems #isactive{
-    color: rgb(8, 108, 190);
-   
-}
+
 .DialogsItems {
     
-    color: aliceblue;
+
     padding: 15px;
-    background-color: rgb(195, 217, 217);
+    
 }
 
 .Messages {
     
     padding: 20px;
-    background-color: rgb(18, 129, 133); /* Светлый фон */
+    
     overflow-y: auto;  /* Прокрутка по вертикали, если сообщений много */  
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Тень для выделения */
+
+}
+.form{
+    display: flex;
+    margin-left: 10px;
+}
+.input {
+    width: 75%;
+    height: 70px;           /* начальная высота под одну строку */
+    max-height: 150px;      /* ограничение, чтобы не расползалось слишком сильно */
+    resize: none;           /* не позволяем пользователю вручную растягивать */
+    overflow-y: auto;       /* появляется вертикальный скролл, когда не помещается текст */
+    font-size: 16px;
+    line-height: 1.4;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 8px 10px;
+    box-sizing: border-box;
+    
+  }
+  
+
+.button{
+
 }
 
-.active {
-    color: red;  /* Измените на нужный цвет */
-  }
+
 

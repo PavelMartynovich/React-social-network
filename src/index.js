@@ -6,6 +6,7 @@ import App from './App';
 import { store } from './data/redux-store';
 import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
+import { SamuraiJSapp } from './App';
 
 // Получаем текущее состояние
 const state = store.getState();
@@ -19,11 +20,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 
   root.render(
 
-    <React.StrictMode>
-      <Provider store={store}>
-        <App />
-      </Provider>
-    </React.StrictMode>
+    <SamuraiJSapp/>
 
   );
 

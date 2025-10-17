@@ -1,18 +1,18 @@
 .UsersBlock {
-  margin: 15px;
+  margin: 25px;
   margin-left: 30px;
     display: grid;
     grid-template-areas: "q w e";
     width: 1200px;
     height: 100px;
-    grid-template-columns: 15% 60% 15%; /* Указываем размеры вертикальных полос */
-    grid-template-rows: 100%; /* Все элементы будут заполнять высоту родительского блока */
+    grid-template-columns: 15% 60% 15%; 
+    grid-template-rows: 100%; 
   }
   
   .ava {
     grid-area:q;
     background-color: rgb(129, 55, 193);
-     /* Каждый блок будет заполнять всю высоту родительского */
+
   }
   
   .shortInfo {
@@ -26,7 +26,6 @@
     background-color: aquamarine;
     padding: 40px;
   }
-  .UsersBlock img{height: 70px; width: 70px; margin-top: 15px; margin-left: 50px;} 
+  .UsersBlock img{height: 70px; width: 70px; margin: 13px} 
 .follow button{ height: 40px;width: 90px;}
-.selectedPage{font-weight: bold;}
 .loader{ width: 350px !important;}

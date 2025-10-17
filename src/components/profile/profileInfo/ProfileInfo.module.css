@@ -1,3 +1,105 @@
 .description{
    margin-left: 10px;
 }
+
+.profileContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+
+.profileHeaderSection {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 16px;
+}
+
+.profilePhotoWrapper {
+  flex-shrink: 0;
+}
+
+.profilePhoto {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.profileMainInfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 8px;
+}
+
+.profileName {
+  font-size: 24px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.profileStatusWrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.statusLabel {
+  font-size: 14px;
+
+}
+
+/* Информация о себе */
+.profileDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 16px;
+
+}
+
+
+.profileContacts {
+  border-top: 1px solid #eee;
+  padding-top: 10px;
+  color: black;
+  
+}
+
+.profileContacts {
+  list-style: none;
+  padding: 0;
+  margin: 8px 0 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.profileContacts li {
+  background: #f5f5f5;
+  padding: 6px 10px;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+/* Фото */
+.profilePhotos h2 {
+  margin-bottom: 10px;
+}
+
+.photosGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.photosGrid img {
+  width: 150px;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}

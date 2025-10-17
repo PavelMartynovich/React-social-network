@@ -1,3 +1,69 @@
-.Header{background-color: rgb(17, 146, 13); grid-area: h;}
+.Header{background-color: rgb(146, 73, 13); grid-area: h;}
 .insta_icon{width: 35px; height: 35px;}
 .Log a{float: right;}
+
+.Header {
+  width: 100%;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  padding: 10px 20px; /* общий отступ сверху/снизу и от краёв */
+}
+
+.Login {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 16px; /* расстояние между аватаркой и колонкой справа */
+}
+
+.insta_icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%; /* аватарка круглой формы */
+  object-fit: cover;
+}
+
+.Login div {
+  width: 1800px;
+  display: flex;
+  flex-direction: column; /* располагать логин и кнопку вертикально */
+  align-items: flex-end;
+  justify-content: center;
+  gap: 6px; /* расстояние между логином и кнопкой */
+}
+
+.Login div div {
+  font-weight: 700;
+  font-size: 16px;
+  color: #333;
+}
+
+.Login button {
+  padding: 6px 12px;
+  font-size: 14px;
+  border: none;
+  border-radius: 6px;
+  background-color: #e74c3c;
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.Login button:hover {
+  background-color: #c0392b;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

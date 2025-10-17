@@ -16,7 +16,7 @@
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
-  display: flex;
+  display: flex; 
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -34,16 +34,49 @@
      "h h" 
      "n c"; 
      grid-template-columns: 20% 80%; 
-     grid-template-rows: 60px 700px; 
+     grid-template-rows: 70px 7000px; 
     
      grid-gap: 7px;
   }
 .app-wrapper-content{
-   background-color: rgb(129, 18, 133) ;
+    background-color: var(--background-color) ;
     grid-area: c;
+    font-weight:900;
 
 }
-.app-wrapper-content img{width: 1535px; height: 350px;}
+
+
+html[data-theme='dark']{
+--button-text-color: #ffffff;
+--button-background-color: #4e005c;
+--button-border-color: #ba8fc2;
+--input-text-color: #ffffff;
+--input-placeholder-text-color: #dddddc;
+--input-background-color: #7c7c7c;
+--input-border-color: #ba8fc2;
+--background-color: #292929;
+--icon-color: #ba8fc2;
+  color: #dddddc;
+}
+
+html[data-theme='light']{
+--button-text-color: #252525;
+--button-background-color: #ebd0ef;
+--button-border-color: #51b125;
+--input-text-color: #252525;
+--input-placeholder-text-color: #c0c0bc;
+--input-background-color: #ffffff;
+--input-border-color: #a135b4;
+--background-color: #f8f8ff;
+--icon-color: #3d0f45;
+  
+}
+html[data-theme='light'] h2 {
+  color: #5a1667;
+}
+html[data-theme='dark'] h2 {
+  color: #d9b1e0;
+}
 
 
 @keyframes App-logo-spin {

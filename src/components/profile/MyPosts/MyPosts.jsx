@@ -13,20 +13,17 @@ console.log('render yoo')
          }
          =useForm()
     
-debugger;
+
     let PostArr = props.Posts.map(el => <Post1 message={el.message} LikeCount={el.LikeCount} />)
 
    /*  let newPostElemnt = React.createRef(); */
 
-    let addPost = () => {
-        props.addPost()     
-    }
+  
     
 /*     let onPostChange = () => {
         props.onPostChange(newPostElemnt.current.value)
     } */
-    const onSubmit = (data)=>{
-        
+    const onSubmit = (data)=>{        
         props.addPost(data.Post)
         reset()
     }
